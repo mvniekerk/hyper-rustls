@@ -70,7 +70,8 @@ impl ConfigBuilderExt for ConfigBuilder<ClientConfig, WantsVerifier> {
         }
 
         for cert in certs {
-            match roots.add(pki_types::CertificateDer::from(cert.0)) {
+
+            match roots.add(cert) {
                 Ok(_) => valid_count += 1,
                 Err(err) => {
                     crate::log::debug!("certificate parsing failed: {:?}", err);
